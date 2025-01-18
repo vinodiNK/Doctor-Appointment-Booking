@@ -1,8 +1,13 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { assets } from '../assets/assets'
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { assets } from '../assets/assets';
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const [setMenu, setShowMenu] = useState(false)
+  const [token, setToken] = useState(true)
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
       <img className='w-44 cursor-pointer' src={assets.admin_logo} alt="" />
@@ -24,9 +29,25 @@ const Navbar = () => {
             <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/>
         </NavLink>
       </ul>
-      <div>
-        <button className='bg-primary text-white px-8 py- rounded-full font-light hidden md:block'>Create account</button>
-      </div>
+      <div className='flex items-center gap-4'>
+        {
+          token
+          ? <div className='flex items-center gap-2 cursor-pointer group relative'>
+            <img className='w-8 rounded-full'src={assets.profile_pic} alt="profile_pic" />
+            <img className='w-2.5'src={assets.dropdown_icon} alt="dropdown_icon" />
+            <div>
+              <div>
+                <p>Mt profile</p>
+                <p>My Appointment</p>
+                <p>Logout</p>
+
+                
+              </div>
+            </div>
+        </div>
+        :<button onClick={()=>navigate('/login')}className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Create account</button>
+        }
+        </div>
     </div>
   )
 }
