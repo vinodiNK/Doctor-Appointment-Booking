@@ -1,2 +1,2 @@
 "# Doctor-Appointment-Booking" 
-##### MERN Stack Project 1
+##### MERN Stack Project 
