@@ -13,7 +13,7 @@ const MyAppointments = () => {
           <div>
             <img className='w-32 bg-indigo-50' src={item.image} />
           </div>
-          <div>
+          <div className='flex-1 text-sm text-zinc-600'>
           <p className='flex-1 text-sm text-zinc-600'>{item.name}</p>
           <p >{item.speciality}</p>
           <p className='text-zinc-700 font-medium mt-1'>Address</p>
