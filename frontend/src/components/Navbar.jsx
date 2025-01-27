@@ -6,7 +6,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const [setMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
   const [token, setToken] = useState(true)
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
@@ -49,7 +49,7 @@ const Navbar = () => {
         }
         <img onClick={()=>setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
         {/*------mobile menu-----*/}
-        <div className={` ${setShowMenu ? 'fixed w-full' : 'h-0 w-0'}  md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
+        <div className={` ${showMenu ? 'fixed w-full' : 'h-0 w-0'}  md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
  
         <div className='flex items-center justify-between px-5 py-6'>
             <img className='w-36' src={assets.logo} alt="" />
