@@ -13,7 +13,7 @@ const AddDoctor = () => {
     const[experience,setExperience] = useState('1 Year')
     const[fees,setFees] = useState('')
     const[about,setAbout] = useState('')
-    const[speciality,setSpeciality] = useState('general physician')
+    const[speciality,setSpeciality] = useState('General physician')
     const[degree,setDegree] = useState('')
     const[address1,setAddress1] = useState('')
     const[address2,setAddress2] = useState('')
@@ -21,7 +21,7 @@ const AddDoctor = () => {
     const { backendUrl, aToken} = useContext(AdminContext)
 
     const onSubmitHandler = async (event) => {
-        Event.preventDefault()
+        event.preventDefault()
 
         try {
 
