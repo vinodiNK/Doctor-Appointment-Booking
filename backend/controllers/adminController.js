@@ -12,6 +12,7 @@ const addDoctor = async(req, res) => {
 
     try {
         const { name, email, password, speciality, degree, experience, about, fees, address } = req.body
+        console.log(req);
         const imageFile = req.file
 
 
@@ -71,6 +72,7 @@ const loginAdmin = async(req, res) => {
     try {
 
         const { email, password } = req.body
+        console.log(req.body);
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
 
             const token = jwt.sign(email + password, process.env.JWT_SECRET)

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import { assets } from '../../assets/assets'
@@ -19,7 +20,7 @@ const AddDoctor = () => {
 
     const { backendUrl, aToken} = useContext(AdminContext)
 
-    const onSubmitHandler = async (Event) => {
+    const onSubmitHandler = async (event) => {
         Event.preventDefault()
 
         try {
@@ -40,13 +41,20 @@ const AddDoctor = () => {
             formData.append('about', about)
             formData.append('speciality', speciality)
             formData.append('degree', degree)
-            formData.append('address',JSON.stringify({line1:address1,line2:address2}) )
+            formData.append('address', JSON.stringify({line1: address1,line2: address2}) )
 
             // console.log formdata
             formData.forEach((value,key)=>{
                 console.log(`${key} : ${value}`);
             })
 
+            const {data} = await axios.post(backendUrl + '/api/admin/add-doctor', formData, {headers: {aToken}})
+            
+            if (data.success) {
+                toast.success(data.message)
+            } else {
+                toast.error(data.message)
+            }
 
         } catch (error) {
 
@@ -55,6 +63,7 @@ const AddDoctor = () => {
 
   return (
     <form onSubmit={onSubmitHandler} className='m-5 w-full'>
+
         <p className='mb-3 text-lg font-medium'>Add Doctor</p>
 <div>
         <div className='bg-white px-8 py-8 border rounded w-full max-w-4xl max-h-[80vh] overflow-y-scroll'>
@@ -109,7 +118,7 @@ const AddDoctor = () => {
                                 <textarea  onChange={(e)=> setAbout(e.target.value)} value={about}className='w-full px-4 pt-2 border rounded'  placeholder='write about doctor' rows={5} required/>
                             </div>
 
-                            <button type='submit' className='bg-primary px-10 py-3 mt-4 text-white rounded-full'>Add Doctor</button>
+                            
                     </div>
                          
                          <div className='w-full lg:flex-1 flex flex-col gap-4'>
@@ -143,7 +152,9 @@ const AddDoctor = () => {
                          </div>
 
                 </div>
+                
             </div>
+            <button type='submit' className='bg-primary px-10 py-3 mt-4 text-white rounded-full'>Add Doctor</button>
         </div>
     </form>
   )
