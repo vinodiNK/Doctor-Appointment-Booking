@@ -12,10 +12,7 @@ const authUser = async(req, res, next) => {
         req.body.userId = token_decode.id
 
 
-        if (token_decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
-            return res.json({ success: false, message: 'Not Authorized Login Again' })
 
-        }
 
         next()
 
