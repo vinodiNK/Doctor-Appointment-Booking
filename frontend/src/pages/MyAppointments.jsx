@@ -42,7 +42,7 @@ const MyAppointments = () => {
       if (data.success) {
         toast.success(data.message)
         getUserAppointments()
-       // getDoctorsData()
+        getDoctorsData()
       } else {
         toast.error(data.message)
       }
